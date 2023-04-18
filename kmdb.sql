@@ -1,8 +1,3 @@
--- In this assignment, you'll be building the domain model, database 
--- structure, and data for "KMDB" (the Kellogg Movie Database).
--- The end product will be a report that prints the movies and the 
--- top-billed cast for each movie in the database.
-
 -- Requirements/assumptions
 -- - There will only be three movies in the database – the three films
 --   that make up Christopher Nolan's Batman trilogy.
@@ -23,7 +18,7 @@
 -- Deliverables
 -- - A domain model, implemented via CREATE TABLE statements for each
 --   model/table. Also, include DROP TABLE IF EXISTS statements for each
---   table, so that each run of this script starts with a blank database.
+--   table, so that each run of this script starts with a blank database. CHECK
 
 -- - Insertion of "Batman" sample data into tables.
 
@@ -34,23 +29,9 @@
 -- 1. Domain model - 6 points
 -- - Think about how the domain model needs to reflect the
 --   "real world" entities and the relationships with each other. 
---   Hint #1: It's not just a single table that contains everything in the 
---   expected output. There are multiple real world entities and
---   relationships including at least one many-to-many relationship.
-
---   Hint #2: Do NOT name one of your models/tables “cast” or “casts”; this 
---   is a reserved word in sqlite and will break your database! Instead, 
---   think of a better word to describe this concept; i.e. the relationship 
---   between an actor and the movie in which they play a part.
-
--- 2. Execution of the domain model (CREATE TABLE) - 4 points
--- - Follow best practices for table and column names
--- - Use correct data column types (i.e. TEXT/INTEGER)
--- - Use of the `model_id` naming convention for foreign key columns
 
 -- 3. Insertion of data (INSERT statements) - 4 points
 -- - Insert data into all the tables you've created
--- - It actually works, i.e. proper INSERT syntax
 
 -- 4. "The report" (SELECT statements) - 6 points
 -- - Write 2 `SELECT` statements to produce something similar to the
@@ -104,45 +85,55 @@ CREATE TABLE movies (
     title TEXT,
     year INTEGER,
     rating TEXT,
-    studio_name TEXT,
-    studio_id INTEGER,
+    studio_id INTEGER
 );
 
 CREATE TABLE studios (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  name TEXT,
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT
 );
 
 CREATE TABLE roles (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  character_name TEXT,
-  movie_id INTEGER,
-  actor_id INTEGER,
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    character_name TEXT,
+    movie_id INTEGER,
+    actor_id INTEGER
 );
 
 CREATE TABLE actors (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  actor_name TEXT
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    actor_name TEXT
 );
 
 -- Insert data into your database that reflects the sample data shown above
 -- Use hard-coded foreign key IDs when necessary
 -- TODO!
+INSERT INTO movies (
+  title,
+  year,
+  rating,
+)
+VALUES (
+  "Batman Begins",
+  2005,
+  "PG-13",
+  "Warner Bros."
+);
 
 -- Prints a header for the movies output
 .print "Movies"
 .print "======"
 .print ""
-
 -- The SQL statement for the movies output
 -- TODO!
+SELECT movies.title, movies.year, movies.rating, studios.name
+FROM movies INNER JOIN ON movies.studio_id = studios.id 
+WHERE ;
 
 -- Prints a header for the cast output
 .print ""
 .print "Top Cast"
 .print "========"
 .print ""
-
-
 -- The SQL statement for the cast output
 -- TODO!
