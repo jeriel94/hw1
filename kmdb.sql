@@ -28,17 +28,16 @@
 
 -- Deliverables
 -- 
--- There are three deliverables for this assignment, all delivered via
--- this file and submitted via GitHub and Canvas:
 -- - A domain model, implemented via CREATE TABLE statements for each
 --   model/table. Also, include DROP TABLE IF EXISTS statements for each
 --   table, so that each run of this script starts with a blank database.
+
 -- - Insertion of "Batman" sample data into tables.
+
 -- - Selection of data, so that something similar to the sample "report"
 --   below can be achieved.
 
 -- Rubric
---
 -- 1. Domain model - 6 points
 -- - Think about how the domain model needs to reflect the
 --   "real world" entities and the relationships with each other. 
@@ -65,15 +64,6 @@
 --   sample output below - 1 for movies and 1 for cast. You will need
 --   to read data from multiple tables in each `SELECT` statement.
 --   Formatting does not matter.
-
--- Submission
--- 
--- - "Use this template" to create a brand-new "hw1" repository in your
---   personal GitHub account, e.g. https://github.com/<USERNAME>/hw1
--- - Do the assignment, committing and syncing often
--- - When done, commit and sync a final time, before submitting the GitHub
---   URL for the finished "hw1" repository as the "Website URL" for the 
---   Homework 1 assignment in Canvas
 
 -- Successful sample output is as shown:
 
@@ -109,6 +99,7 @@
 
 -- Drop existing tables, so you'll start fresh each time this script is run.
 -- TODO!
+DROP TABLE 
 
 -- Create new tables, according to your domain model
 -- TODO!
@@ -126,11 +117,11 @@ CREATE TABLE studios (
   
 );
 
-CREATE TABLE characters (
+CREATE TABLE roles (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
-  name TEXT,
-
+  character_name TEXT,
   movie_id INTEGER,
+  actor_id TEXT,
 );
 
 CREATE TABLE actors (
