@@ -9,7 +9,7 @@
 
 -- User stories
 -- - As a guest, I want to see a list of movies with the title, year released,
---   MPAA rating, and studio information.
+--   MPAA rating, and studio information. SET UP
 -- - As a guest, I want to see the movies which a single studio has produced.
 -- - As a guest, I want to see each movie's cast including each actor's
 --   name and the name of the character they portray.
@@ -81,11 +81,11 @@ DROP TABLE IF EXISTS actors;
 -- Create new tables, according to your domain model
 -- TODO!
 CREATE TABLE movies (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    title TEXT,
-    year INTEGER,
-    rating TEXT,
-    studio_id INTEGER
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  title TEXT,
+  year INTEGER,
+  rating TEXT,
+  studio TEXT
 );
 
 CREATE TABLE studios (
@@ -102,23 +102,59 @@ CREATE TABLE roles (
 
 CREATE TABLE actors (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    actor_name TEXT
+    name TEXT
 );
 
 -- Insert data into your database that reflects the sample data shown above
 -- Use hard-coded foreign key IDs when necessary
 -- TODO!
 INSERT INTO movies (
-  title,
-  year,
-  rating,
-)
-VALUES (
-  "Batman Begins",
-  2005,
-  "PG-13",
-  "Warner Bros."
-);
+  title, 
+  year, 
+  rating, 
+  studio
+  ) 
+  VALUES
+  ('Batman Begins', 2005, 'PG-13', 'Warner Bros.'),
+  ('The Dark Knight', 2008, 'PG-13', 'Warner Bros.'),
+  ('The Dark Knight Rises', 2012, 'PG-13', 'Warner Bros.');
+
+INSERT INTO actors (
+  name
+  ) 
+  VALUES
+  ('Christian Bale'),
+  ('Michael Caine'),
+  ('Liam Neeson'),
+  ('Katie Holmes'),
+  ('Gary Oldman'),
+  ('Heath Ledger'),
+  ('Aaron Eckhart'),
+  ('Maggie Gyllenhaal'),
+  ('Tom Hardy'),
+  ('Joseph Gordon-Levitt'),
+  ('Anne Hathaway');
+
+  INSERT INTO roles (
+    movie_id, 
+    actor_id, 
+    character
+    ) 
+    VALUES
+  (1, 1, 'Bruce Wayne'),
+  (1, 2, 'Alfred'),
+  (1, 3, 'Ra's Al Ghul'),
+  (1, 4, 'Rachel Dawes'),
+  (1, 5, 'Commissioner Gordon'),
+  (2, 1, 'Bruce Wayne'),
+  (2, 6, 'Joker'),
+  (2, 7, 'Harvey Dent'),
+  (2, 8, 'Rachel Dawes'),
+  (3, 1, 'Bruce Wayne'),
+  (3, 5, 'Commissioner Gordon'),
+  (3, 9, 'Bane'),
+  (3, 10, 'John Blake'),
+  (3, 11, 'Selina Kyle');
 
 -- Prints a header for the movies output
 .print "Movies"
