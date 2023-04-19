@@ -109,13 +109,12 @@ CREATE TABLE actors (
 -- Use hard-coded foreign key IDs when necessary
 -- TODO!
 INSERT INTO movies (title, year, rating, studio_id) 
-  VALUES ("Batman Begins", 2005, "PG-13", 1);
+  VALUES ("Batman Begins", 2005, "PG-13", 1),
+  ("The Dark Knight", 2008, "PG-13", 1),
+  ("The Dark Knight Rises", 2012, "PG-13", 1);
 
-INSERT INTO movies (title, year, rating, studio_id) 
- VALUES ("The Dark Knight", 2008, "PG-13", 1);
-
-INSERT INTO movies (title, year, rating, studio_id) 
-  VALUES ("The Dark Knight Rises", 2012, "PG-13", 1);
+INSERT INTO studios (name) 
+  VALUES ("Warner Bros.");
 
 INSERT INTO actors (name) 
   VALUES
@@ -156,7 +155,8 @@ INSERT INTO actors (name)
 -- The SQL statement for the movies output
 -- TODO!
 SELECT movies.title, movies.year, movies.rating, studios.name 
-FROM movies INNER JOIN studios ON studios.id = movies.studio_id;
+FROM movies 
+INNER JOIN studios ON studios.id = movies.studio_id;
 
 -- Prints a header for the cast output
 .print ""
