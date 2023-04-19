@@ -113,7 +113,7 @@ INSERT INTO movies (title, year, rating, studio_id)
   ("The Dark Knight", 2008, "PG-13", 1),
   ("The Dark Knight Rises", 2012, "PG-13", 1);
 
-INSERT INTO studios (name) 
+INSERT INTO studios (name)
   VALUES ("Warner Bros.");
 
 INSERT INTO actors (name) 
@@ -167,5 +167,5 @@ INNER JOIN studios ON studios.id = movies.studio_id;
 -- TODO!
 SELECT movies.title, actors.name, roles.character 
 FROM roles 
-INNER JOIN movies on movies.id = roles.movie_id 
+INNER JOIN movies on movies.id = roles.movie_id
 INNER JOIN actors ON actors.id = roles.actor_id;
